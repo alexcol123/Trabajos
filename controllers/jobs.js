@@ -9,17 +9,15 @@ const {
 } = require('../errors')
 
 const createJob = async (req, res) => {
-  const authHeader = req.headers.authorization
 
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    throw new UnauthenticatedError('Authentication Invalid')
-  }
-
-  const token = authHeader.split(' ')[1]
-
-  const payload = jwt.verify(token, process.env.JWT_SECRET)
-
-  req.user = { userId: payload.userId, name: payload.name }
+  // AUTHENTICATION moved to middleware
+  // const authHeader = req.headers.authorization
+  // if (!authHeader || !authHeader.startsWith('Bearer ')) {
+  //   throw new UnauthenticatedError('Authentication Invalid')
+  // }
+  // const token = authHeader.split(' ')[1]
+  // const payload = jwt.verify(token, process.env.JWT_SECRET)
+  //  req.user = { userId: payload.userId, name: payload.name }
 
   req.body.createdBy = req.user.userId
 
