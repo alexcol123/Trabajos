@@ -15,10 +15,16 @@ const connectDB = require('./db/connect')
 //const authenticateUser = require('./middleware/authentication')
 
 // Routers
+const authRouter = require('./routes/auth')
+const jobsRouter = require('./routes/jobs')
 
 // Error Handler
 
 // Extra security
+
+// routes
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/job', jobsRouter)
 
 //  app.get('/', (req, res) => res.send('Hello World!'))
 
