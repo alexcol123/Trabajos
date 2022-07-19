@@ -20,6 +20,7 @@ const jobsRouter = require('./routes/jobs')
 
 // Error Handler
 const notFoundMiddleware = require('./middleware/not-found')
+const errorHandlerMiddleware = require('./middleware/error-handler')
 
 // Extra security
 
@@ -32,6 +33,7 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/job', jobsRouter)
 
 app.use(notFoundMiddleware)
+app.use(errorHandlerMiddleware)
 
 const port = process.env.PORT || 5000
 

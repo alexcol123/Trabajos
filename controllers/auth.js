@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const { StatusCodes } = require('http-status-codes')
+const { BadRequestError, UnauthenticatedError } = require('../errors')
 
 // REGISTER
 const register = async (req, res) => {
@@ -21,7 +22,7 @@ const login = async (req, res) => {
   const { email, password } = req.body
 
   if (!email || !password) {
-    res.send('Please include email and password')
+    throw new BadRequestError('Please include email and password')
   }
 
   const user = await User.findOne({ email })
