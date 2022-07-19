@@ -22,11 +22,14 @@ const jobsRouter = require('./routes/jobs')
 
 // Extra security
 
+// Middleware
+app.use(express.json())
 // routes
+//  app.get('/', (req, res) => res.send('Hello World!'))
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/job', jobsRouter)
 
-//  app.get('/', (req, res) => res.send('Hello World!'))
+
 
 const port = process.env.PORT || 5000
 
