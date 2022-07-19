@@ -19,17 +19,19 @@ const authRouter = require('./routes/auth')
 const jobsRouter = require('./routes/jobs')
 
 // Error Handler
+const notFoundMiddleware = require('./middleware/not-found')
 
 // Extra security
 
 // Middleware
 app.use(express.json())
+
 // routes
- app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.send('Hello World!'))
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/job', jobsRouter)
 
-
+app.use(notFoundMiddleware)
 
 const port = process.env.PORT || 5000
 
