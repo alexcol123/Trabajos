@@ -9,7 +9,6 @@ const {
 } = require('../errors')
 
 const createJob = async (req, res) => {
-
   // AUTHENTICATION moved to middleware
   // const authHeader = req.headers.authorization
   // if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -26,19 +25,57 @@ const createJob = async (req, res) => {
 }
 
 const getAllJobs = async (req, res) => {
-  res.send('getAllJobs ')
+  const jobs = await Job.find({ createdBy: req.user.userId }).sort('createdAt')
+
+  res.status(StatusCodes.OK).json({ count: jobs.length, jobs })
 }
 
 const getJob = async (req, res) => {
-  res.send('getJob ')
+  const {
+    user: { userId },
+    params: { id: jobId },
+  } = req
+
+  const job = await Job.findOne({ _id: jobId, createdBy: userId })
+
+  if (!job) throw new NotFoundError(`No job found with id ${jobId}`)
+
+  res.status(StatusCodes.OK).json({ job })
 }
 
 const updateJob = async (req, res) => {
-  res.send('updateJob ')
+  const {
+    body: { company, position },
+    user: { userId },
+    params: { id: jobId },
+  } = req
+
+  if (company === '' || position === '') {
+    throw new BadRequestError('Company or position fields are required')
+  }
+
+  const job = await Job.findByIdAndUpdate(
+    { _id: jobId, createdBy: userId },
+    req.body,
+    { new: true, runValidators: true }
+  )
+
+  if (!job) throw new NotFoundError(`No job found with id ${jobId}`)
+
+  res.status(StatusCodes.OK).json({ job })
 }
 
 const deleteJob = async (req, res) => {
-  res.send('deleteJob ')
+  const {
+    user: { userId },
+    params: { id: jobId },
+  } = req
+
+  const job = await Job.findByIdAndRemove({ _id: jobId, createdBy: userId })
+
+  if (!job) throw new NotFoundError(`No job found with id ${jobId}`)
+
+  res.status(StatusCodes.OK).json(' Job deleted ')
 }
 
 module.exports = {
