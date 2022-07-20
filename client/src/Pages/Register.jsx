@@ -3,6 +3,7 @@ import Logo from '../components/Logo'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser, registerUser } from '../features/user/userSlice'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const initialState = {
   name: '',
@@ -14,8 +15,16 @@ const initialState = {
 const Register = () => {
   const { user, isLoading } = useSelector((store) => store.user)
   const dispatch = useDispatch()
-
+  const navigate = useNavigate()
   const [values, setValues] = useState(initialState)
+
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate('/')
+      }, 2000)
+    }
+  }, [user])
 
   const handleChange = (e) => {
     const name = e.target.name
