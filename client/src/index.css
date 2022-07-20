@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #f0f4f8;
+}
+
+@layer components {
+  .btnNormal {
+    @apply w-fit shadow font-semibold text-lg px-4 py-2     text-center rounded hover:opacity-80;
+  }
+
+  .btnFull {
+    @apply w-full shadow font-semibold text-lg px-4 py-2  text-center rounded hover:opacity-80;
+  }
+}
