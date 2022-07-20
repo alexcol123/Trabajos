@@ -11,8 +11,6 @@ const initialState = {
   isMember: true,
 }
 
-
-
 const Register = () => {
   const { user, isLoading } = useSelector((store) => store.user)
   const dispatch = useDispatch()
@@ -114,7 +112,11 @@ const Register = () => {
           </div>
 
           <div className='mb-4 '>
-            <button type='submit' className='btnFull bg-primary text-white'>
+            <button
+              type='submit'
+              disabled={isLoading}
+              className='btnFull bg-primary text-white'
+            >
               Submit
             </button>
           </div>

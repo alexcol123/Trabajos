@@ -3,8 +3,7 @@ import axios from 'axios'
 // Register route  http://localhost:5000/api/v1/auth/login
 
 const customFetch = axios.create({
-  baseURL: 'http://localhost:5000/api/v1/auth',
+  baseURL: 'http://localhost:5000/api/v1',
 })
-
 
 export default customFetch
