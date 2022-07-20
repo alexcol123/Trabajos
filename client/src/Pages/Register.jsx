@@ -11,7 +11,7 @@ const initialState = {
   isMember: true,
 }
 
-//http://localhost:5000/api/v1/auth/login
+
 
 const Register = () => {
   const { user, isLoading } = useSelector((store) => store.user)
