@@ -4,6 +4,8 @@ import Landing from './Pages/Landing'
 import Register from './Pages/Register'
 import SharedLayout from './Pages/SharedLayout'
 
+
+
 import StatsCards from './components/StatsCards'
 import AddJobForm from './components/AddJobForm'
 import ProfileForm from './components/ProfileForm'
@@ -18,10 +20,11 @@ const App = () => {
     <div className='mt-48'>
       <Routes>
         <Route path='/' element={<SharedLayout />}>
-          <Route index element={<StatsCards />} />
+          <Route index element={<AllJobsContainer />} />
           <Route path='add-job' element={<AddJobForm />} />
           <Route path='profile' element={<ProfileForm />} />
-          <Route path='/all-jobs' element={<AllJobsContainer />} />
+          {/* <Route path='all-jobs' element={<AllJobsContainer />} /> */}
+          <Route path='stats' element={<StatsCards />} />
         </Route>
 
         <Route path='/landing' element={<Landing />} />
@@ -32,7 +35,7 @@ const App = () => {
         position='top-center'
         className='capitalize text-center'
       />
-      <div>test</div>
+
     </div>
   )
 }

@@ -10,7 +10,7 @@ const SecondaryNav = () => {
     <div className='flex  w-full  mx-auto  h-12 py-8 justify-between bg-primary100 items-center md:px-20 shadow-md   '>
       <div className='flex max-w-5xl w-4/5 lg:w-3/5  lg:px-4 xl:px-8  mx-auto'>
         <Link
-          to='/'
+          to='stats'
           className=' group  flex items-center   hover:bg-primary100  w-full py-4   px-2    '
         >
           <IoBarChartSharp
@@ -21,7 +21,7 @@ const SecondaryNav = () => {
         </Link>
 
         <Link
-          to='/all-jobs'
+          to='/'
           className=' group  flex items-center   hover:bg-primary100  w-full py-4   px-2   '
         >
           <MdQueryStats

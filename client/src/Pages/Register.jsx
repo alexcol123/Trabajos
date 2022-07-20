@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Logo from '../components/Logo'
+import { toast } from 'react-toastify'
 
 const initialState = {
   name: '',
@@ -21,6 +22,11 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const { name, email, password, isMember } = values
+
+    if (!email || !password || (!isMember && !name)) {
+      toast.error('Please fill out all fields.')
+    }
   }
 
   const toggleIsMember = () => {
