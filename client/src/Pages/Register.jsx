@@ -117,7 +117,7 @@ const Register = () => {
               disabled={isLoading}
               className='btnFull bg-primary text-white'
             >
-              Submit
+              {isLoading ? 'Loading' : 'Submit'}
             </button>
           </div>
 
