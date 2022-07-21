@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from '../components/Logo'
 import MainImg from '../assets/images/main.svg'
+import { Link } from 'react-router-dom'
 
 const Landing = () => {
   return (
@@ -16,13 +17,18 @@ const Landing = () => {
             Job <span className='text-primary'>Tracking </span>App
           </h1>
           <p>
-            Alias quaerat! Repellat, labore consectetur culpa ex, molestias
-            magnam odio nemo, illo laboriosam autem rerum quam undipisci, eaque
-            eligendi. Recuacto a temporibus magni repellat?
+            Trabajos es una aplicacion creada para manterner record de los
+            trabajos a los que haz aplicado, y saver como vas progresando en tus
+            entrevistas , tambien te creamos una grafica de tus aplicaniones y
+            el estatus de ellas. Y mucho mas. Subscribete Gratis ahora
           </p>
-          <button className='btnFull sm:btnNormal  sm:text-center bg-primary text-white'>
+
+          <Link
+            to='/register'
+            className=' block btnFull sm:btnNormal  sm:text-center bg-primary text-white'
+          >
             Login/Register
-          </button>
+          </Link>
         </div>
 
         {/* Right Hidden in Md  */}

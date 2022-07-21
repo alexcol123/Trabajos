@@ -2,17 +2,20 @@ import React, { useState } from 'react'
 import NavContainer from '../components/NavContainer'
 
 import { Outlet } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleSidebar } from '../features/user/userSlice'
 
 const SharedLayout = () => {
-  const [showNav, setShowNav] = useState(false)
+  const { isSidebarOpen } = useSelector((state) => state.user)
+  const dispatch = useDispatch()
 
   const toggleNav = () => {
-    setShowNav(!showNav)
+    dispatch(toggleSidebar())
   }
 
   return (
     <div>
-      <NavContainer showNav={showNav} toggleNav={toggleNav} />
+      <NavContainer showNav={isSidebarOpen} toggleNav={toggleNav} />
       <div className='px-4'>
         <Outlet />
       </div>

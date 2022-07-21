@@ -1,11 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import customFetch from '../../utils/axios'
-import { addUserToLocalStorage, getUserFromLocalStorage, removeUserFromLocalStorage } from '../../utils/localStorage'
+import {
+  addUserToLocalStorage,
+  getUserFromLocalStorage,
+  removeUserFromLocalStorage,
+} from '../../utils/localStorage'
 
 const initialState = {
   isLoading: false,
-  user: getUserFromLocalStorage()
+  isSidebarOpen: false,
+  user: getUserFromLocalStorage(),
 }
 
 export const registerUser = createAsyncThunk(
@@ -37,6 +42,19 @@ export const loginUser = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState,
+  // Reducers
+  reducers: {
+    toggleSidebar: (state) => {
+      state.isSidebarOpen = !state.isSidebarOpen
+    },
+    logoutUser: (state) => {
+      state.user = null
+      state.isSidebarOpen = false
+      removeUserFromLocalStorage()
+      toast.success('Goodbye')
+    },
+  },
+
   extraReducers: {
     // Register
     [registerUser.pending]: (state) => {
@@ -55,7 +73,7 @@ const userSlice = createSlice({
       toast.error(payload)
     },
     // Login
-     [loginUser.pending]: (state) => {
+    [loginUser.pending]: (state) => {
       state.isLoading = true
     },
     [loginUser.fulfilled]: (state, { payload }) => {
@@ -72,5 +90,7 @@ const userSlice = createSlice({
     },
   },
 })
+
+export const { toggleSidebar, logoutUser } = userSlice.actions
 
 export default userSlice.reducer

@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import Logo from './Logo'
 import { FaUserCircle, FaCaretDown, FaCaretUp } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
+import { logoutUser } from '../features/user/userSlice'
 
 const MainNav = ({ showNav, toggleNav }) => {
+  const dispatch = useDispatch()
   const { user } = useSelector((store) => store.user)
   const [showLogout, setShowLogout] = useState(false)
 
@@ -36,14 +38,18 @@ const MainNav = ({ showNav, toggleNav }) => {
           <div>
             <FaUserCircle className='mr-2 sm:mr-1' />
           </div>
-          <div className='hidden md:block'>{user.name}</div>
+          <div className='hidden md:block'>{user && user.name}</div>
           <div>
             <FaCaretDown />
           </div>
         </button>
 
         {showLogout && (
-          <button  onClick={()=> console.log('Logout user')} className='btnNormal absolute bottom-[-55px] w-fit bg-red-100 text-red-900 text-sm sm:text-md md:text-lg hover:bg-red-900 hover:text-white duration-300'>
+          <button
+            onClick={() => dispatch(logoutUser())}
+            type='button'
+            className='btnNormal absolute bottom-[-55px] w-fit bg-red-100 text-red-900 text-sm sm:text-md md:text-lg hover:bg-red-900 hover:text-white duration-300'
+          >
             Logout
           </button>
         )}
