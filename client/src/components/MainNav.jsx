@@ -38,7 +38,7 @@ const MainNav = ({ showNav, toggleNav }) => {
           <div>
             <FaUserCircle className='mr-2 sm:mr-1' />
           </div>
-          <div className='hidden md:block'>{user && user.name}</div>
+          <div className='hidden md:block'>{user && user.firstName}</div>
           <div>
             <FaCaretDown />
           </div>

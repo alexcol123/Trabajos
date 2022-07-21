@@ -6,8 +6,10 @@ import { loginUser, registerUser } from '../features/user/userSlice'
 import { Navigate, useNavigate } from 'react-router-dom'
 
 const initialState = {
-  name: '',
+  firstName: '',
+  lastName: '',
   email: '',
+  country: '',
   password: '',
   isMember: true,
 }
@@ -34,9 +36,15 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const { name, email, password, isMember } = values
+    const { firstName, lastName, email, password, isMember, country } = values
 
-    if (!email || !password || (!isMember && !name)) {
+    if (
+      !email ||
+      !password ||
+      (!isMember && !firstName) ||
+      (!isMember && !lastName) ||
+      (!isMember && !country)
+    ) {
       toast.error('Please fill out all fields.')
       return
     }
@@ -46,7 +54,7 @@ const Register = () => {
       return
     }
 
-    dispatch(registerUser({ name, email, password }))
+    dispatch(registerUser({ firstName, lastName, email, password, country }))
   }
 
   const toggleIsMember = () => {
@@ -62,23 +70,63 @@ const Register = () => {
           </h1>
 
           {!values.isMember && (
-            <div className='mb-8'>
-              <label
-                className='block text-gray-500 text-sm font-bold mb-2'
-                htmlFor='name'
-              >
-                Name
-              </label>
-              <input
-                className='shadow appearance-none border w-full py-2 px-3 text-gray-500  bg-primary50 leading-tight  focus:shadow-outline '
-                id='name'
-                value={values.name}
-                onChange={handleChange}
-                name='name'
-                type='text'
-                placeholder='Name'
-                autoComplete='true'
-              />
+            <div>
+              <div className='mb-8'>
+                <label
+                  className='block text-gray-500 text-sm font-bold mb-2'
+                  htmlFor='firstName'
+                >
+                  first Name
+                </label>
+                <input
+                  className='shadow appearance-none border w-full py-2 px-3 text-gray-500  bg-primary50 leading-tight  focus:shadow-outline '
+                  id='firstName'
+                  value={values.firstName}
+                  onChange={handleChange}
+                  name='firstName'
+                  type='text'
+                  placeholder='first Name'
+                  autoComplete='true'
+                />
+              </div>
+
+              <div className='mb-8'>
+                <label
+                  className='block text-gray-500 text-sm font-bold mb-2'
+                  htmlFor='lastName'
+                >
+                  last Name
+                </label>
+                <input
+                  className='shadow appearance-none border w-full py-2 px-3 text-gray-500  bg-primary50 leading-tight  focus:shadow-outline '
+                  id='lastName'
+                  value={values.lastName}
+                  onChange={handleChange}
+                  name='lastName'
+                  type='text'
+                  placeholder='Last Name'
+                  autoComplete='true'
+                />
+              </div>
+
+              <div className='mb-8'>
+                <label
+                  className='block text-gray-500 text-sm font-bold mb-2'
+                  htmlFor='country'
+                >
+                  Country
+                </label>
+                <input
+                  className='shadow appearance-none border w-full py-2 px-3 text-gray-500  bg-primary50 leading-tight  focus:shadow-outline '
+                  id='country'
+                  value={values.country}
+                  onChange={handleChange}
+                  name='country'
+                  type='text'
+                  placeholder='Country'
+                  autoComplete='true'
+                />
+              </div>
             </div>
           )}
 

@@ -4,9 +4,9 @@ const { BadRequestError, UnauthenticatedError } = require('../errors')
 
 // REGISTER
 const register = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body
+  const { firstName, lastName, email, country, password } = req.body
 
-  if (!firstName || !lastName || !email || !password) {
+  if (!firstName || !lastName || !email || !password || !country) {
     res.send('Please include , firstName, lastName, email, password')
   }
 
@@ -19,6 +19,7 @@ const register = async (req, res) => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      country: user.country,
       token,
     },
   })
