@@ -4,17 +4,24 @@ const { BadRequestError, UnauthenticatedError } = require('../errors')
 
 // REGISTER
 const register = async (req, res) => {
-  // const { name, email, password } = req.body
+  const { firstName, lastName, email, password } = req.body
 
-  // if (!name || !email || !password) {
-  //   res.send('Please include , name, email, password')
-  // }
+  if (!firstName || !lastName || !email || !password) {
+    res.send('Please include , firstName, lastName, email, password')
+  }
 
   const user = await User.create({ ...req.body })
 
   const token = user.createJWT()
 
-  res.status(StatusCodes.OK).json({ user: { name: user.name, token } })
+  res.status(StatusCodes.CREATED).json({
+    user: {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      token,
+    },
+  })
 }
 
 // LOGIN
@@ -39,7 +46,15 @@ const login = async (req, res) => {
   }
 
   const token = user.createJWT()
-  res.status(StatusCodes.OK).json({ user: { name: user.name, token } })
+
+  res.status(StatusCodes.OK).json({
+    user: {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      token,
+    },
+  })
 }
 
 module.exports = {
