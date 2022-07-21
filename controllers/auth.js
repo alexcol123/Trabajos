@@ -71,6 +71,14 @@ const updateUser = async (req, res) => {
     user: { userId },
   } = req
 
+  const emailAlredyInUse = await User.findOne({ email })
+
+  if (emailAlredyInUse !== null) {
+    if (emailAlredyInUse && emailAlredyInUse.email !== email) {
+      throw new BadRequestError('That email is already in  use')
+    }
+  }
+
   const user = await User.findOneAndUpdate({ _id: userId }, req.body, {
     new: true,
     runValidators: true,
