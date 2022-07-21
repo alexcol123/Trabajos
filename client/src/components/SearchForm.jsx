@@ -13,8 +13,8 @@ const SearchForm = () => {
         >
           <div className=''>
             <label
-              class='block text-gray-500 text-md font-bold mb-2'
-              for='search'
+              className='block text-gray-500 text-md font-bold mb-2'
+              htmlFor='search'
             >
               Search
             </label>
@@ -28,8 +28,8 @@ const SearchForm = () => {
 
           <div className=''>
             <label
-              class='block text-gray-500 text-md font-bold mb-2'
-              for='status'
+              className='block text-gray-500 text-md font-bold mb-2'
+              htmlFor='status'
             >
               Status
             </label>
@@ -39,7 +39,7 @@ const SearchForm = () => {
               name='status'
               className='shadow  border w-full py-2 px-3 text-gray-500  bg-primary50 leading-tight  focus:shadow-outline'
             >
-              <option selected>All</option>
+              <option>All</option>
               <option>interviewed</option>
               <option>declined</option>
               <option>pending</option>
@@ -48,8 +48,8 @@ const SearchForm = () => {
 
           <div className=''>
             <label
-              class='block text-gray-500 text-md font-bold mb-2'
-              for='type'
+              className='block text-gray-500 text-md font-bold mb-2'
+              htmlFor='type'
             >
               Type
             </label>
@@ -59,7 +59,7 @@ const SearchForm = () => {
               name='type'
               className='shadow  border w-full py-2 px-3 text-gray-500  bg-primary50 leading-tight  focus:shadow-outline'
             >
-              <option selected>All</option>
+              <option>All</option>
               <option>full-time</option>
               <option>part-time</option>
               <option>remote</option>
@@ -69,8 +69,8 @@ const SearchForm = () => {
 
           <div className=''>
             <label
-              class='block text-gray-500 text-md font-bold mb-2'
-              for='sort'
+              className='block text-gray-500 text-md font-bold mb-2'
+              htmlFor='sort'
             >
               Sort
             </label>
@@ -80,7 +80,7 @@ const SearchForm = () => {
               name='sort'
               className='shadow  border w-full py-2 px-3 text-gray-500  bg-primary50 leading-tight  focus:shadow-outline'
             >
-              <option selected>Latest</option>
+              <option>Latest</option>
               <option>oldest</option>
               <option>a-z</option>
               <option>z-a</option>

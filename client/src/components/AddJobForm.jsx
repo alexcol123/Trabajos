@@ -13,8 +13,8 @@ const AddJobForm = () => {
       >
         <div className=''>
           <label
-            class='block text-gray-500 text-md font-bold mb-2'
-            for='Position'
+            className='block text-gray-500 text-md font-bold mb-2'
+            htmlFor='Position'
           >
             Position
           </label>
@@ -28,8 +28,8 @@ const AddJobForm = () => {
 
         <div className=''>
           <label
-            class='block text-gray-500 text-md font-bold mb-2'
-            for='company'
+            className='block text-gray-500 text-md font-bold mb-2'
+            htmlFor='company'
           >
             Company
           </label>
@@ -43,8 +43,8 @@ const AddJobForm = () => {
 
         <div className=''>
           <label
-            class='block text-gray-500 text-md font-bold mb-2'
-            for='location'
+            className='block text-gray-500 text-md font-bold mb-2'
+            htmlFor='location'
           >
             Job Location
           </label>
@@ -58,8 +58,8 @@ const AddJobForm = () => {
 
         <div className=''>
           <label
-            class='block text-gray-500 text-md font-bold mb-2'
-            for='status'
+            className='block text-gray-500 text-md font-bold mb-2'
+            htmlFor='status'
           >
             Status
           </label>
@@ -69,7 +69,7 @@ const AddJobForm = () => {
             name='status'
             className='shadow  border w-full py-2 px-3 text-gray-500  bg-primary50 leading-tight  focus:shadow-outline'
           >
-            <option selected>interview</option>
+            <option>interview</option>
             <option>decline</option>
             <option>pending</option>
           </select>
@@ -77,8 +77,8 @@ const AddJobForm = () => {
 
         <div className=''>
           <label
-            class='block text-gray-500 text-md font-bold mb-2'
-            for='type'
+            className='block text-gray-500 text-md font-bold mb-2'
+            htmlFor='type'
           >
             Job Type
           </label>
@@ -88,7 +88,7 @@ const AddJobForm = () => {
             name='type'
             className='shadow  border w-full py-2 px-3 text-gray-500  bg-primary50 leading-tight  focus:shadow-outline'
           >
-            <option selected>full-time</option>
+            <option >full-time</option>
             <option>part-time</option>
             <option>remote</option>
             <option>internship</option>
