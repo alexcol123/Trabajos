@@ -48,11 +48,42 @@ const login = async (req, res) => {
 
   const token = user.createJWT()
 
+  res.status(StatusCodes.CREATED).json({
+    user: {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      country: user.country,
+      token,
+    },
+  })
+}
+
+// UpdateUser
+const updateUser = async (req, res) => {
+  const { firstName, lastName, email, country } = req.body
+
+  if (!firstName || !lastName || !email || !country) {
+    res.send('Please include , firstName, lastName, email')
+  }
+
+  const {
+    user: { userId },
+  } = req
+
+  const user = await User.findOneAndUpdate({ _id: userId }, req.body, {
+    new: true,
+    runValidators: true,
+  })
+
+  const token = user.createJWT()
+
   res.status(StatusCodes.OK).json({
     user: {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      country: user.country,
       token,
     },
   })
@@ -61,4 +92,5 @@ const login = async (req, res) => {
 module.exports = {
   register,
   login,
+  updateUser,
 }
