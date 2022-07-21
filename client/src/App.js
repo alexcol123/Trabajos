@@ -3,8 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom'
 import Landing from './Pages/Landing'
 import Register from './Pages/Register'
 import SharedLayout from './Pages/SharedLayout'
-
-
+import ProtectedRoute from './Pages/ProtectedRoute'
 
 import StatsCards from './components/StatsCards'
 import AddJobForm from './components/AddJobForm'
@@ -19,7 +18,14 @@ const App = () => {
   return (
     <div className='mt-48'>
       <Routes>
-        <Route path='/' element={<SharedLayout />}>
+        <Route
+          path='/'
+          element={
+            <ProtectedRoute>
+              <SharedLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<AllJobsContainer />} />
           <Route path='add-job' element={<AddJobForm />} />
           <Route path='profile' element={<ProfileForm />} />
@@ -35,7 +41,6 @@ const App = () => {
         position='top-center'
         className='capitalize text-center'
       />
-
     </div>
   )
 }
