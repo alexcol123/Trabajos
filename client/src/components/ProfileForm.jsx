@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import { updateUser } from '../features/user/userSlice'
 
 const ProfileForm = () => {
   const { isLoading, user } = useSelector((store) => store.user)
@@ -21,6 +22,7 @@ const ProfileForm = () => {
       toast.error('Plese fill out all fields!')
     }
 
+    dispatch(updateUser(userData))
   }
 
   const handleChange = (e) => {
