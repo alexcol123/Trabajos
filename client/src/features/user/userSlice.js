@@ -48,10 +48,13 @@ export const updateUser = createAsyncThunk(
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
       })
-console.log(resp.data);
+      console.log(resp.data)
       return resp.data
     } catch (error) {
-      console.log(error.response)
+      if (error.response.status === 401) {
+        thunkAPI.dispatch(logoutUser())
+        return thunkAPI.rejectWithValue('Unauthorized! Loggin Out...')
+      }
       return thunkAPI.rejectWithValue(error.response.data.msg)
     }
   }
@@ -96,7 +99,7 @@ const userSlice = createSlice({
     },
     [loginUser.fulfilled]: (state, { payload }) => {
       state.isLoading = false
- 
+
       const { user } = payload
       addUserToLocalStorage(user)
       state.user = user
